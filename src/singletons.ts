@@ -1,5 +1,5 @@
 export const globalHashDictionary = new Map<string, string>();
-import { createClient } from "@libsql/client";
+import { createClient } from "@libsql/client/web";
 
 const rawDb = createClient({
   url: process.env.TURSO_DATABASE_URL!,
