@@ -38,6 +38,20 @@ export const dbClient = {
       value: result.rows[0].value as string,
     };
   },
+  getMany: async function (keys: string[]) {
+    await this._init();
+
+    const keysJoined = keys.map((k) => `"${k}"`).join(", ");
+    const result = await rawDb.execute({
+      args: {},
+      sql: `SELECT key, value FROM kv WHERE key IN (${keysJoined})`,
+    });
+
+    return result.rows.map((row) => ({
+      key: row.key as string,
+      value: row.value as string,
+    }));
+  },
   set: async function (key: string, value: string) {
     await this._init();
     return rawDb.execute({
@@ -51,10 +65,13 @@ export const hashMediator = {
   getHash: async (hash: string): Promise<string | null> => {
     const response = await dbClient.get(hash);
     return response ? response.value : null;
-    // return globalHashDictionary.get(hash) ?? null;
   },
   setHash: async (hash: string, value: string) => {
     const result = await dbClient.set(hash, value);
+    return result;
+  },
+  getHashes: async (hashes: string[]) => {
+    const result = await dbClient.getMany(hashes);
     return result;
   },
 };
