@@ -33,6 +33,13 @@ export default function Component() {
               <Link
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
                 href="#">
+                Cruddit
+              </Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+                href="#">
                 Contact
               </Link>
             </NavigationMenuLink>
