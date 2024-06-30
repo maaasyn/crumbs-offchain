@@ -82,18 +82,36 @@ export default function Component() {
                 <p className="mt-2 text-gray-600 dark:text-gray-400">
                   Each website is represented by a unique hash, generated from
                   the website&apos;s URL, ensuring comments are site-specific.
+                  The unique identifier in the context of crumbs is called a
+                  crumb.
                 </p>
                 <code>
                   keccak {'"'}https://example.com/{'"'} ===
                   0x00238809d48a86b3a841a3f501d566475cde08f38cb75969645733a83e43306a
                 </code>
-                <Image
-                  src="/example-url.png"
-                  alt={"example url hash generation"}
-                  width={400}
-                  height={200}
-                  layout={"responsive"}
-                />
+
+                <code>
+                  {`
+                  {
+  // Keccak of "https://example.com/"
+  "0x00238809d48a86b3a841a3f501d566475cde08f38cb75969645733a83e43306a": [
+    // Keccak of "Hello"
+    "0x1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36deac8",
+    // Keccak of "Hi"
+    "0x7624778dedc75f8b322b9fa1632a610d40b85e106c7d9bf0e743a9ce291b9c6f",
+  ],
+}
+`}
+                </code>
+                <div className="mx-auto max-w-xl lg:max-w-3xl p-4">
+                  <Image
+                    src="/example-url.png"
+                    alt={"example url hash generation"}
+                    width={400}
+                    height={200}
+                    layout={"responsive"}
+                  />
+                </div>
               </div>
               <div className="flex flex-col items-center text-center">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -101,8 +119,13 @@ export default function Component() {
                 </h3>
                 <p className="mt-2 text-gray-600 dark:text-gray-400">
                   You can create comments on any website and commit them
-                  permanently on-chain to be viewed by anyone.
+                  permanently on-chain to be viewed by anyone. Each comment
+                  works as a value in array of hashes for given crumb (url).
                 </p>
+                <code>
+                  keccak {'"'}hello{'"'} ===
+                  0x1c8aff950685c2ed4bc3174f3472287b56d9517b9c948127319a09a7a36deac8
+                </code>
               </div>
               <div className="flex flex-col items-center text-center">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
