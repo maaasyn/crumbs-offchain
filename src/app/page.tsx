@@ -102,11 +102,24 @@ export default function Component() {
   ],
 }
 `}
+
+<div className="mx-auto max-w-xl lg:max-w-3xl p-4">
+                <Image
+                  src="/crumbs-cropped.gif"
+                  alt={"crumbs usage example"}
+                  width={400}
+                  height={200}
+                  layout={"responsive"}
+                />
+                <p>Demo</p>
+              </div>
+
+
                 </code>
                 <div className="mx-auto max-w-xl lg:max-w-3xl p-4">
                   <Image
-                    src="/example-url.png"
-                    alt={"example url hash generation"}
+                    src="/crumbs-example-hashmap.svg"
+                    alt={"example url hash map"}
                     width={400}
                     height={200}
                     layout={"responsive"}
