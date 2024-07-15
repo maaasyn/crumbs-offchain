@@ -207,8 +207,8 @@ const SectionWhatAreCrumbs = () => {
           </p>
           <p className="text-xl">
             This unique identifier, in the context of this protocol, is called a
-            crumb. We are binding comment hashes to the crumb from the website's
-            URL, ensuring comments are site-specific.
+            crumb. We are binding comment hashes to the crumb from the
+            website&apos;s URL, ensuring comments are site-specific.
           </p>
         </div>
         <div className="flex flex-wrap max-w-screen-md justify-between gap-6">
@@ -265,8 +265,8 @@ const SectionGettingStarted = () => {
               <li>- The Crumbs extension</li>
             </ul>
             <p>
-              That's it. Have fun. Pretty please don't make me nuke this app out
-              of this world. 💀
+              That&apos;s it. Have fun. Pretty please don&apos;t make me nuke
+              this app out of this world. 💀
             </p>
           </div>
         </div>
