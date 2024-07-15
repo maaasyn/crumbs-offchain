@@ -47,3 +47,6 @@ https://cryptologos.cc/
 
 nice gif shrinker
 https://ezgif.com/speed/ezgif-3-0d90a78347.gif
+
+pretty
+https://www.halcyon.ai/raas-vs-saas

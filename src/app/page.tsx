@@ -14,7 +14,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center py-4 px-8">
+    <nav className="flex justify-between items-center py-4 px-8 lg:px-16">
       <div className="flex items-center">
         <Image src={crumbsLogo} alt="Crumbs logo" className="w-8 h-8" />
         <div className="text-4xl font-bold ml-2">Crumbs</div>
@@ -35,12 +35,12 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-around items-center py-16 px-8">
-      <div className="max-w-sm">
-        <p className="text-6xl font-bold mb-4">
+    <div className="flex flex-col lg:flex-row justify-around items-center pt-16 lg:py-16 px-8 lg:px-16">
+      <div className="max-w-sm text-center lg:text-left">
+        <p className="text-4xl md:text-6xl font-bold mb-4">
           Comment everything, everywhere.
         </p>
-        <p className="text-xl">
+        <p className="text-lg md:text-xl">
           On-chain committed comments. Verifiable. Open. Permanent.
         </p>
         <div className="flex flex-col mt-8 gap-4">
@@ -60,11 +60,11 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-      <div className="relative">
-        <div className="flex justify-center items-center">
+      <div className="relative mt-8 lg:mt-0">
+        <div className="lg:relative absolute inset-0 flex justify-center items-center z-0">
           <Image src={eclipse} alt="background eclipse image" />
         </div>
-        <div className="absolute inset-0 z-10 rotate-12 justify-self-center self-center transition ease-in-out hover:scale-110 animate-rotate-slow">
+        <div className="lg:absolute relative lg:inset-0 z-10 lg:rotate-12 justify-self-center self-center transition scale-90 lg:scale-100 ease-in-out lg:hover:scale-110 lg:animate-rotate-slow">
           <Image src={crumbsHero} alt="crumbs extension example" />
         </div>
       </div>
@@ -76,49 +76,49 @@ const colorBeige = "FEF9E8";
 
 const YellowPaperOffchain = () => {
   return (
-    <div className="flex justify-center items-center w-full">
-      <div className="bg-[#FEF9E8] py-20 rounded-2xl flex justify-center items-center max-w-screen-lg w-full">
+    <div className="flex justify-center items-center w-full px-4 lg:px-8">
+      <div className="bg-[#FEF9E8] lg:py-20 py-10 px-4 rounded-2xl flex justify-center items-center max-w-screen-lg w-full">
         <div className="flex flex-col gap-10 justify-center items-center max-w-xl">
           <p className="text-3xl font-bold mb-4">Off-chain Hashmap</p>
-          <p className="w-full text-xl">
+          <p className="w-full text-lg md:text-xl">
             The second part of the Crumbs protocol is the off-chain hashmap.
             Each user can host their own dictionary of hashes and expose them to
             the public. The dictionaries are used by the protocol to resolve the
             commitments from the chain.
           </p>
-          <table className="border-2 text-2xl p-4 border-black w-full border-collapse">
+          <table className="border-2 text-base md:text-2xl p-2 md:p-4 border-black w-full border-collapse">
             <thead>
-              <tr className="border-2 text-2xl p-4 border-black">
-                <th className="border-2 text-2xl p-4 border-black font-normal">
+              <tr className="border-2 text-base md:text-2xl p-2 md:p-4 border-black">
+                <th className="border-2 text-base md:text-2xl p-2 md:p-4 border-black font-normal">
                   Key
                 </th>
-                <th className="border-2 text-2xl p-4 border-black font-normal">
+                <th className="border-2 text-base md:text-2xl p-2 md:p-4 border-black font-normal">
                   Value
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-2 text-2xl p-4 border-black">
-                <td className="border-2 text-2xl p-4 border-black text-center">
+              <tr className="border-2 text-base md:text-2xl p-2 md:p-4 border-black">
+                <td className="border-2 text-base md:text-2xl p-2 md:p-4 border-black text-center">
                   0x1234
                 </td>
-                <td className="border-2 text-2xl p-4 border-black text-center">
+                <td className="border-2 text-base md:text-2xl p-2 md:p-4 border-black text-center">
                   0x123456
                 </td>
               </tr>
-              <tr className="border-2 text-2xl p-4 border-black">
-                <td className="border-2 text-2xl p-4 border-black text-center">
+              <tr className="border-2 text-base md:text-2xl p-2 md:p-4 border-black">
+                <td className="border-2 text-base md:text-2xl p-2 md:p-4 border-black text-center">
                   0x1235
                 </td>
-                <td className="border-2 text-2xl p-4 border-black text-center">
+                <td className="border-2 text-base md:text-2xl p-2 md:p-4 border-black text-center">
                   0x123457
                 </td>
               </tr>
-              <tr className="border-2 text-2xl p-4 border-black">
-                <td className="border-2 text-2xl p-4 border-black text-center">
+              <tr className="border-2 text-base md:text-2xl p-2 md:p-4 border-black">
+                <td className="border-2 text-base md:text-2xl p-2 md:p-4 border-black text-center">
                   0x1236
                 </td>
-                <td className="border-2 text-2xl p-4 border-black text-center">
+                <td className="border-2 text-base md:text-2xl p-2 md:p-4 border-black text-center">
                   0x123458
                 </td>
               </tr>
@@ -132,25 +132,25 @@ const YellowPaperOffchain = () => {
 
 const YellowPaperOnChain = () => {
   return (
-    <div className="flex justify-center items-center w-full">
-      <div className="bg-[#FEF9E8] py-20 rounded-2xl flex justify-center items-center max-w-screen-lg w-full">
+    <div className="flex justify-center items-center w-full px-4 lg:px-8">
+      <div className="bg-[#FEF9E8] lg:py-20 py-10 px-4 rounded-2xl flex justify-center items-center max-w-screen-lg w-full">
         <div className="flex flex-col gap-10 justify-center items-center max-w-xl">
           <p className="text-3xl font-bold mb-4">On-chain Contract</p>
-          <p className="w-full text-xl">
+          <p className="w-full text-base md:text-xl">
             Users commit their intended hash to the Crumbs contract. The
             contract stores information about the crumb that the message was
             sent to, along with additional metadata like the date and user who
             sent it.
           </p>
-          <div className="flex items-center">
-            <div className="border-2 text-2xl p-4 border-black text-center">
+          <div className="flex flex-col md:flex-row items-center">
+            <div className="border-2 text-lg md:text-2xl p-4 border-black text-center">
               Crumb
             </div>
-            <div className="text-2xl p-4 text-center">
+            <div className="text-lg md:text-2xl p-4 text-center">
               <div>1:n</div>
               <div>---{">"}</div>
             </div>
-            <div className="border-2 text-2xl p-4 border-black text-center">
+            <div className="border-2 text-lg md:text-2xl p-4 border-black text-center">
               <ul>
                 <li>Comment Commitment</li>
                 <li>User Address</li>
@@ -197,15 +197,17 @@ const items: SquareThingWithTextProps[] = [
 
 const SectionWhatAreCrumbs = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full px-4 lg:px-8">
       <div className="flex flex-col justify-center items-center w-full gap-16">
-        <p className="text-5xl font-bold max-w-screen-sm">What are Crumbs?</p>
-        <div className="max-w-screen-sm flex flex-col gap-4">
-          <p className="text-xl">
+        <p className="text-4xl md:text-5xl font-bold max-w-screen-sm text-center">
+          What are Crumbs?
+        </p>
+        <div className="max-w-screen-sm flex flex-col gap-4 text-center lg:text-left">
+          <p className="text-base md:text-xl">
             Each piece of data such as a link, video, book, text, or file can be
             represented as a hash - a unique identifier - a data fingerprint.
           </p>
-          <p className="text-xl">
+          <p className="text-base md:text-xl">
             This unique identifier, in the context of this protocol, is called a
             crumb. We are binding comment hashes to the crumb from the
             website&apos;s URL, ensuring comments are site-specific.
@@ -223,14 +225,13 @@ const SectionWhatAreCrumbs = () => {
 
 const SectionHowDoesItWork = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
-      <div
-        className="flex flex-col justify-center items-center w-full gap-16
-
-">
-        <p className="text-5xl font-bold max-w-screen-sm">How does it work?</p>
-        <div className="max-w-screen-sm flex flex-col gap-4">
-          <p className="text-xl">
+    <div className="flex flex-col justify-center items-center w-full px-4 lg:px-8">
+      <div className="flex flex-col justify-center items-center w-full gap-16">
+        <p className="text-4xl md:text-5xl font-bold max-w-screen-sm text-center">
+          How does it work?
+        </p>
+        <div className="max-w-screen-sm flex flex-col gap-4 text-center lg:text-left">
+          <p className="text-lg md:text-xl">
             Crumbs is a protocol based on two concepts: data on-chain is
             permanent and data validity is verifiable with a checksum.
           </p>
@@ -242,9 +243,9 @@ const SectionHowDoesItWork = () => {
 
 const SectionBigPlus = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full px-4 lg:px-8">
       <div className="flex flex-col justify-center items-center w-full gap-16">
-        <p className="text-5xl font-bold max-w-screen-sm">+</p>
+        <p className="text-4xl md:text-5xl font-bold max-w-screen-sm">+</p>
       </div>
     </div>
   );
@@ -252,11 +253,13 @@ const SectionBigPlus = () => {
 
 const SectionGettingStarted = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
-      <div className="flex flex-row max-w-screen-md gap-5">
-        <div className="flex flex-col justify-center items-start w-full gap-16">
-          <p className="text-5xl font-bold max-w-screen-sm">Getting Started</p>
-          <div className="max-w-screen-sm flex flex-col gap-4">
+    <div className="flex flex-col justify-center items-center w-full px-4 lg:px-0">
+      <div className="flex flex-col lg:flex-row max-w-screen-md gap-5">
+        <div className="flex flex-col justify-center  lg:items-start items-center w-full gap-8 lg:gap-16">
+          <p className="text-4xl md:text-5xl font-bold max-w-screen-sm text-center">
+            Getting Started
+          </p>
+          <div className="max-w-screen-sm flex flex-col gap-4 text-left">
             <p>You will need:</p>
             <ul>
               <li>- A Chromium-based browser</li>
@@ -347,17 +350,17 @@ const ChainIcon = (props: { chain: ChainCarousel }) => {
 
 const SectionSupportedNetworks = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full px-4 lg:px-8">
       <div className="flex flex-col justify-center items-center w-full gap-16">
-        <div className="flex flex-col gap-4">
-          <p className="text-5xl font-bold max-w-screen-sm">
+        <div className="flex flex-col justify-center items-center gap-4">
+          <p className="text-4xl md:text-5xl font-bold max-w-screen-sm text-center">
             Supported Networks
           </p>
-          <p className="text-xl text-center">
+          <p className="text-lg md:text-xl text-center">
             Currently, only test chains are supported.
           </p>
         </div>
-        <div className="max-w-screen-sm flex flex-row gap-8">
+        <div className="max-w-screen-sm flex flex-row flex-wrap gap-8 justify-center">
           {chainsToSupport.map((chain, idx) => (
             <ChainIcon chain={chain} key={idx} />
           ))}
@@ -399,7 +402,7 @@ const faqs: Faq[] = [
 const SectionFaq = (props: { faqs: Faq[] }) => {
   return (
     <>
-      <section className="pb-20 dark:bg-slate-900 flex justify-center w-full">
+      <section className="pb-20 dark:bg-slate-900 flex justify-center w-full px-4 lg:px-0">
         <Accordion type="single" collapsible className="w-full max-w-screen-md">
           {props.faqs.map((item, idx) => (
             <div className="w-full" key={idx}>
