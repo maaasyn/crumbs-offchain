@@ -1,4 +1,9 @@
+import type { MouseEvent, MouseEventHandler } from "react";
 import { sepolia } from "viem/chains";
+
+type Prettify<T> = {
+  [K in keyof T]: T[K];
+} & {};
 
 export type HeadlessClientOptions = {
   options: {
@@ -16,8 +21,11 @@ export type HeadlessClientUrl = {
 
 export type HeadlessClientMessages = {
   messages: {
-    getMessages: () => Message[];
+    //TODO: decide if it should be obsolete
+    getMessages: () => Promise<Message[]>;
     sendMessage: (text: string) => void;
+    messages: Message[];
+    isLoading: boolean;
     refreshMessages: () => void;
   };
 };
@@ -29,17 +37,39 @@ export type HeadlessClientTab = {
   };
 };
 
-export type HeadlessClientCtx = HeadlessClientUrl &
-  HeadlessClientTab &
-  HeadlessClientOptions &
-  HeadlessClientMessages & {
-    handleSubmit: (input: string) => void;
-    userAddress: `0x${string}`;
-    account: {
-      isConnected: boolean;
-      handleConnectWalletClick: () => void;
-    };
+export type HeadlessClientUrlAccountMap = {
+  urlAccountMap: Record<string, string | null>;
+};
+export type HeadlessClientAccount = {
+  userAddress: `0x${string}`;
+  account: {
+    isConnected: boolean;
+    handleConnectWalletClick: () => Promise<void>;
   };
+};
+
+export type HeadlessClientSendMessage = {
+  handleSubmit: (input: string) => void;
+};
+
+export type HeadlessClientFeedback = {
+  feedback: {
+    // https://crumbs.eurekonomicon.com/feedback
+    feedbackUrl: string;
+    onFeedbackNavigate: MouseEventHandler<HTMLAnchorElement>;
+  };
+};
+
+export type HeadlessClientCtx = Prettify<
+  HeadlessClientUrl &
+    HeadlessClientAccount &
+    HeadlessClientTab &
+    HeadlessClientOptions &
+    HeadlessClientMessages &
+    HeadlessClientSendMessage &
+    HeadlessClientUrlAccountMap &
+    HeadlessClientFeedback
+>;
 
 export type Message = {
   address: string;

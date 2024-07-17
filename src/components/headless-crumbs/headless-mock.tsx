@@ -28,16 +28,23 @@ export default function HeadlessMock() {
     handleSubmit: (input: string) => console.log(input),
     userAddress: "0x1234567890",
     account: {
-      handleConnectWalletClick: () => {
+      handleConnectWalletClick: async () => {
         connectToWallet((x) => !x);
       },
       isConnected: isConnectedToWallet,
     },
     messages: {
-      getMessages: () => [],
+      getMessages: async () => [],
+      isLoading: false,
+      messages: [],
       sendMessage: () => {},
       refreshMessages: () => {},
     },
+    feedback: {
+      feedbackUrl: "https://crumbs.eurekonomicon.com/feedback",
+      onFeedbackNavigate: (e) => {},
+    },
+    urlAccountMap: {},
   };
   const ctx = mockContext;
   return (

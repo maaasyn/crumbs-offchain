@@ -17,7 +17,7 @@ export const SingleMessage = ({
     <>
       <div
         key={`${message.address}-${message.text}-${idx}`}
-        className={`flex w-full items-center mb-2 last:mb-0 ${
+        className={`flex items-center mb-2 last:mb-0 ${
           isUser ? "flex-row-reverse" : "flex-row"
         }`}>
         {shouldShowAvatar(message, messages[idx + 1]) && (
@@ -35,7 +35,7 @@ export const SingleMessage = ({
             }`}></div>
         )}
 
-        <div className="flex flex-col relative w-full">
+        <div className="flex flex-col relative">
           <div className="flex gap-1">
             <span
               className="text-xs font-mediu hover:underline"
