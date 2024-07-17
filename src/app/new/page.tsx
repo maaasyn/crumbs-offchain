@@ -1,15 +1,12 @@
-const HeadlessClient = () => {
-  return (
-    <>
-      <h1>Hello</h1>
-    </>
-  );
-};
+import {
+  HeadlessClient,
+  crumbsHeadlessContext,
+} from "@/components/headless-crumbs/headless-crumbs";
 
 export default function Page() {
   return (
     <>
-      <HeadlessClient />
+      <HeadlessClient ctx={crumbsHeadlessContext} />
     </>
   );
 }
