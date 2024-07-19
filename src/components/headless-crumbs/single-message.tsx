@@ -64,6 +64,7 @@ export const SingleMessage = ({
           </div>
           <span
             className="text-xs text-gray-500 text-right mt-0.5"
+            suppressHydrationWarning
             title={formatDate(message.timestamp)}>
             {formatTime(message.timestamp)}
           </span>

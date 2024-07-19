@@ -7,7 +7,7 @@ import { getOffChainClient } from "@/lib/client";
 import { createPublicClient, http, keccak256, toHex } from "viem";
 import { sepolia } from "viem/chains";
 
-const uint96ToTimestamp = (uint96: bigint): number => {
+export const uint96ToTimestamp = (uint96: bigint): number => {
   // take first 40 bits
   const timestamp = Number(uint96 >> BigInt(56));
 
@@ -32,6 +32,7 @@ export const getMessages = async (url: string): Promise<Message[]> => {
   const resolvedDictionary = await offchainClient.getHashValues(
     data.map((comment) => comment.commentHash)
   );
+
   const dataResolved = data.map((comment) => ({
     address: comment.user,
     text: resolvedDictionary[comment.commentHash] ?? comment.commentHash,

@@ -18,6 +18,7 @@ export default function HeadlessMock() {
       allowUrlEdit: true,
     },
     url: {
+      currentUrl: url,
       getCurrentUrl: () => url,
       setCurrentUrl: setUrl,
     },
@@ -34,7 +35,6 @@ export default function HeadlessMock() {
       isConnected: isConnectedToWallet,
     },
     messages: {
-      getMessages: async () => [],
       isLoading: false,
       messages: [],
       sendMessage: () => {},

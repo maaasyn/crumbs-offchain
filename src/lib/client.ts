@@ -2,7 +2,8 @@
 //   KECCAK = "KECCAK",
 // }
 
-const URL = "https://crumbs.eurekonomicon.com";
+// const URL = "https://crumbs.eurekonomicon.com";
+const URL = "";
 
 export const getOffChainClient = () => {
   const setHashValue = async (input: { hash: string; value: string }) => {
@@ -23,6 +24,7 @@ export const getOffChainClient = () => {
     const response = await fetch(offchainUrl, {
       method: reqType,
       body,
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,6 +39,7 @@ export const getOffChainClient = () => {
     const reqType = "GET";
 
     const response = await fetch(url, {
+      // mode: "no-cors",
       method: reqType,
     });
 
@@ -61,12 +64,15 @@ export const getOffChainClient = () => {
     const response = await fetch(url, {
       method: reqType,
       body,
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
     });
 
-    return response.json() as Promise<{ [key: string]: string }>;
+    const resultAsJson = (await response.json()) as { [key: string]: string };
+
+    return resultAsJson;
   };
 
   return { getHashValue, setHashValue, getHashValues };

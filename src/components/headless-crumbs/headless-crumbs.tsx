@@ -161,6 +161,7 @@ export const crumbsHeadlessContext: HeadlessClientCtx = {
     allowUrlEdit: true,
   },
   url: {
+    currentUrl: "https://current.url",
     getCurrentUrl: () => "https://current.url",
     setCurrentUrl: (value: string) => {
       console.log(value);
@@ -179,7 +180,6 @@ export const crumbsHeadlessContext: HeadlessClientCtx = {
     isConnected: true,
   },
   messages: {
-    getMessages: async () => [],
     sendMessage: () => {},
     refreshMessages: () => {},
     isLoading: false,
@@ -193,7 +193,6 @@ export const crumbsHeadlessContext: HeadlessClientCtx = {
 };
 
 export const HeadlessClient = ({ ctx }: { ctx: HeadlessClientCtx }) => {
-  const currentUrl = ctx.url.getCurrentUrl();
   return (
     <>
       <div className="w-72 border-black border-2 font-sans">

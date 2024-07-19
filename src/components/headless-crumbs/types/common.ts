@@ -13,6 +13,7 @@ export type HeadlessClientOptions = {
 
 export type HeadlessClientUrl = {
   url: {
+    currentUrl: string;
     getCurrentUrl: () => string;
     /// required only for editing urls on the fly.
     setCurrentUrl?: (value: string) => void;
@@ -21,8 +22,6 @@ export type HeadlessClientUrl = {
 
 export type HeadlessClientMessages = {
   messages: {
-    //TODO: decide if it should be obsolete
-    getMessages: () => Promise<Message[]>;
     sendMessage: (text: string) => void;
     messages: Message[];
     isLoading: boolean;

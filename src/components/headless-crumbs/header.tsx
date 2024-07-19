@@ -17,7 +17,9 @@ type HeaderProps = HeadlessClientOptions &
   HeadlessClientMessages;
 
 export const Header = ({ tab, url, options, messages }: HeaderProps) => {
-  const currentUrl = url.getCurrentUrl();
+  const { currentUrl } = url;
+
+  console.log({ currentUrl });
 
   return (
     <header className="p-4 flex flex-col items-start border-b-4 border-black bg-purple-200">
