@@ -16,14 +16,17 @@ import { SingleMessage } from "@/components/headless-crumbs/single-message";
 import SinglePendingComment from "@/components/headless-crumbs/single-pending-comment";
 import { Header } from "./header";
 import { Settings } from "@/components/headless-crumbs/settings";
+import { forwardRef } from "react";
 
-export const Body = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className="overflow-y-auto h-72 mb-4 p-4 flex flex-col">
-      {children}
-    </div>
-  );
-};
+export const Body = forwardRef<HTMLDivElement, { children: ReactNode }>(
+  function Body({ children }, ref) {
+    return (
+      <div ref={ref} className="overflow-y-auto h-72 mb-4 p-4 flex flex-col">
+        {children}
+      </div>
+    );
+  }
+);
 
 const usePendingComments = (input: unknown) => {
   return {
@@ -43,23 +46,24 @@ export const Chat = ({
   messages,
   handleSubmit,
 }: ChatProps) => {
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   // const { messages, isLoading } = useGetMessages();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const [inputValue, setInputValue] = useState("");
   const { pendingComments } = usePendingComments(url.getCurrentUrl());
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    // Scroll to the bottom of the chat container
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]); // Dependency array ensures this runs when messages change
 
   return (
     <>
-      <Body>
+      <Body ref={chatContainerRef}>
         {messages.isLoading && (
           <div className="text-center p-4">Loading...</div>
         )}
@@ -84,7 +88,6 @@ export const Chat = ({
             comment={comment}
           />
         ))}
-        <div ref={messagesEndRef} />
       </Body>
       <form
         className="flex p-2 border-black border-t-2 bg-purple-200 gap-1"

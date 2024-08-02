@@ -48,7 +48,7 @@ export type HeadlessClientAccount = {
 };
 
 export type HeadlessClientSendMessage = {
-  handleSubmit: (input: string) => void;
+  handleSubmit: (input: string) => Promise<void>;
 };
 
 export type HeadlessClientFeedback = {

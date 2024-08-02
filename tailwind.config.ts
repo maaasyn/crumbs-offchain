@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config = {
   darkMode: ["class"],
@@ -71,15 +72,31 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        enter: {
+          "0%": { transform: "translateY(10%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "rotate-slow": "rotate-slow 5s infinite linear",
+        // https://www.madara.zone/
+        enter: "enter 0.6s ease-out 1",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(({ addComponents }) => {
+      addComponents({
+        ".on-scroll": {
+          "animation-timeline": "view()",
+          "animation-range": "contain",
+        },
+      });
+    }),
+  ],
 } satisfies Config;
 
 export default config;

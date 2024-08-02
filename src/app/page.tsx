@@ -11,6 +11,7 @@ import crumbsLogo from "@/public/logo.svg";
 import crumbsHero from "@/public/landing-crumbs-image.png";
 import eclipse from "@/public/eclipse.svg";
 import React from "react";
+import HeadlessElse from "@/components/headless-crumbs/headless-else";
 
 const Navbar = () => {
   return (
@@ -36,7 +37,7 @@ const Navbar = () => {
 const Hero = () => {
   return (
     <div className="flex flex-col lg:flex-row justify-around items-center pt-16 lg:py-16 px-8 lg:px-16">
-      <div className="max-w-sm text-center lg:text-left">
+      <div className="max-w-sm text-center lg:text-left animate-enter">
         <p className="text-4xl md:text-6xl font-bold mb-4">
           Comment everything, everywhere.
         </p>
@@ -64,8 +65,11 @@ const Hero = () => {
         <div className="lg:relative absolute inset-0 flex justify-center items-center z-0">
           <Image src={eclipse} alt="background eclipse image" />
         </div>
-        <div className="lg:absolute relative lg:inset-0 z-10 lg:rotate-12 justify-self-center self-center transition scale-90 lg:scale-100 ease-in-out lg:hover:scale-110 lg:animate-rotate-slow">
-          <Image src={crumbsHero} alt="crumbs extension example" />
+        {/* <div className="lg:absolute relative lg:inset-0 z-10 lg:rotate-12 justify-self-center self-center transition scale-90 lg:scale-100 ease-in-out lg:hover:scale-110 lg:animate-rotate-slow
+        "> */}
+        <div className="lg:absolute relative lg:inset-0 z-10 justify-self-center self-center scale-90 lg:scale-100 lg:hover:scale-110">
+          <HeadlessElse url={"https://example.com/"} />
+          {/* <Image src={crumbsHero} alt="crumbs extension example" /> */}
         </div>
       </div>
     </div>
@@ -199,10 +203,10 @@ const SectionWhatAreCrumbs = () => {
   return (
     <div className="flex flex-col justify-center items-center w-full px-4 lg:px-8">
       <div className="flex flex-col justify-center items-center w-full gap-16">
-        <p className="text-4xl md:text-5xl font-bold max-w-screen-sm text-center">
+        <p className="text-4xl md:text-5xl font-bold max-w-screen-sm text-center animate-[enter] [animation-timeline:view()] [animation-range:cover_0%_cover_70%]">
           What are Crumbs?
         </p>
-        <div className="max-w-screen-sm flex flex-col gap-4 text-center lg:text-left">
+        <div className="max-w-screen-sm flex flex-col gap-4 text-center lg:text-left ">
           <p className="text-base md:text-xl">
             Each piece of data such as a link, video, book, text, or file can be
             represented as a hash - a unique identifier - a data fingerprint.
