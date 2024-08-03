@@ -4,7 +4,20 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const getRootUrl = () => {
+  if (process.env.ROOT_URL) {
+    return `https://${process.env.ROOT_URL}`;
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  return `http://localhost:${process.env.PORT || 3000}`;
+};
+// ROOT_URL
 export const metadata: Metadata = {
+  metadataBase: new URL(getRootUrl()),
   title: "Crumbs",
   description: "Comment everything, everywhere.",
   openGraph: {
