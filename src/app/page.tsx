@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import crumbsDemoGif from "@/public/crumbs-demo.gif";
 import crumbsLogo from "@/public/logo.svg";
-import crumbsHero from "@/public/landing-crumbs-image.png";
 import eclipse from "@/public/eclipse.svg";
 import React from "react";
 import HeadlessElse from "@/components/headless-crumbs/headless-else";
@@ -67,7 +66,7 @@ const Hero = () => {
         </div>
         {/* <div className="lg:absolute relative lg:inset-0 z-10 lg:rotate-12 justify-self-center self-center transition scale-90 lg:scale-100 ease-in-out lg:hover:scale-110 lg:animate-rotate-slow
         "> */}
-        <div className="lg:absolute relative lg:inset-0 z-10 justify-self-center self-center scale-90 lg:scale-100 lg:hover:scale-110">
+        <div className="lg:absolute relative lg:inset-0 z-10 justify-self-center self-center scale-90 lg:scale-110">
           <HeadlessElse url={"https://example.com/"} />
           {/* <Image src={crumbsHero} alt="crumbs extension example" /> */}
         </div>
