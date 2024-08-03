@@ -174,7 +174,7 @@ export const crumbsHeadlessContext: HeadlessClientCtx = {
     getCurrentTab: () => Tabs.CHAT,
     setTab: (tab: Tabs) => console.log(tab),
   },
-  handleSubmit: (input: string) => console.log(input),
+  handleSubmit: async (input: string) => console.log(input),
   userAddress: "0x1234567890",
   account: {
     handleConnectWalletClick: async () => {

@@ -26,7 +26,7 @@ export default function HeadlessMock() {
       getCurrentTab: () => tab,
       setTab: setTab,
     },
-    handleSubmit: (input: string) => console.log(input),
+    handleSubmit: async (input: string) => console.log(input),
     userAddress: "0x1234567890",
     account: {
       handleConnectWalletClick: async () => {

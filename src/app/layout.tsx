@@ -7,6 +7,22 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Crumbs",
   description: "Comment everything, everywhere.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://crumbs.eurekonomicon.com",
+    title: "Crumbs",
+    siteName: "Crumbs",
+    description: "Comment everything, everywhere.",
+    images: [
+      {
+        url: "/crumbs-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Crumbs",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
