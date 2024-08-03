@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/crumbs-og.png",
-        width: 1200,
-        height: 630,
+        width: 1299,
+        height: 810,
         alt: "Crumbs",
       },
     ],
