@@ -398,7 +398,8 @@ const faqs: Faq[] = [
   },
   {
     question: "Give me contracts",
-    answer: "It's in the chains repo, not finalised yet.",
+    answer:
+      "The contracts code is available on GitHub. The main contract on Sepolia Eth: 0xCf39ed9EA9d1E72E10Fba670683DC3717116D19a.",
   },
 ];
 
