@@ -2,12 +2,11 @@ import { getMessages } from "@/lib/readMessages";
 import { useQuery } from "@tanstack/react-query";
 
 export const useMessages = (url: string) => {
-  const { data, error, refetch, isLoading, isFetched, isPending, isFetching } =
-    useQuery({
-      queryKey: ["messages", url],
-      queryFn: () => getMessages(url),
-      enabled: !!url,
-    });
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ["messages", url],
+    queryFn: () => getMessages(url),
+    enabled: !!url,
+  });
 
   return {
     messages: data || [],

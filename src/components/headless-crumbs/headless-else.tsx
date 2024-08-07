@@ -7,7 +7,6 @@ import {
 } from "@/components/headless-crumbs/types/common";
 import { useState } from "react";
 import {
-  // createPublicClient,
   createWalletClient,
   custom,
   createPublicClient,
@@ -29,62 +28,50 @@ import {
   CRUMBS_CONTRACT_ABI,
   CRUMBS_CONTRACT_ADDRESS,
 } from "@/app/contract/details";
-import { getOffChainClient } from "@/lib/client";
+import { usePendingComments } from "@/hooks/usePendingMessages";
+import { offChainQuickSave } from "@/lib/offChainQuickSave";
 
 const FROM = "injected";
 const F = `[${FROM}]`;
 
-const sendMessage = async (url: string, message: string) => {
-  const offChainClient = getOffChainClient();
+// const sendMessage = async (url: string, message: string) => {
+//   await offChainQuickSave(url, message);
 
-  const isAllOk = await Promise.all([
-    offChainClient.setHashValue({
-      hash: keccak256(toHex(url)),
-      value: url,
-    }),
-    offChainClient.setHashValue({
-      hash: keccak256(toHex(message)),
-      value: message,
-    }),
-  ]);
+//   const walletClient = createWalletClient({
+//     chain: sepolia,
+//     //@ts-ignore
+//     transport: custom(window?.ethereum!),
+//   });
 
-  if (!isAllOk) {
-    throw new Error("Failed to set hash value");
-  }
+//   await walletClient.switchChain(sepolia);
 
-  const contract = getContract({
-    abi: CRUMBS_CONTRACT_ABI,
-    address: CRUMBS_CONTRACT_ADDRESS,
-    client: createPublicClient({
-      chain: sepolia,
-      transport: http("https://ethereum-sepolia-rpc.publicnode.com"),
-    }),
-  });
+//   const [address] = await walletClient.requestAddresses();
 
-  const encodedFn = encodeFunctionData({
-    abi: contract.abi,
-    functionName: "storeComment",
-    args: [keccak256(toHex(url)), keccak256(toHex(message)), BigInt(0)],
-  });
+//   const contract = getContract({
+//     abi: CRUMBS_CONTRACT_ABI,
+//     address: CRUMBS_CONTRACT_ADDRESS,
+//     client: createPublicClient({
+//       chain: sepolia,
+//       transport: http("https://ethereum-sepolia-rpc.publicnode.com"),
+//     }),
+//   });
 
-  const walletClient = createWalletClient({
-    chain: sepolia,
-    //@ts-ignore
-    transport: custom(window?.ethereum!),
-  });
+//   const encodedFn = encodeFunctionData({
+//     abi: contract.abi,
+//     functionName: "storeComment",
+//     args: [keccak256(toHex(url)), keccak256(toHex(message)), BigInt(0)],
+//   });
 
-  const [address] = await walletClient.requestAddresses();
-
-  try {
-    const tx = await walletClient.sendTransaction({
-      to: CRUMBS_CONTRACT_ADDRESS,
-      data: encodedFn,
-      account: address,
-    });
-  } catch (e) {
-    console.error(F, e);
-  }
-};
+//   try {
+//     const tx = await walletClient.sendTransaction({
+//       to: CRUMBS_CONTRACT_ADDRESS,
+//       data: encodedFn,
+//       account: address,
+//     });
+//   } catch (e) {
+//     console.error(F, e);
+//   }
+// };
 
 export function HeadlessMock(props: { url?: string }) {
   const getCurrentUrl = () => {
@@ -100,10 +87,16 @@ export function HeadlessMock(props: { url?: string }) {
   const [url, setUrl] = useState(getCurrentUrl());
   const [isConnectedToWallet, connectToWallet] = useState(false);
   const { isLoading, messages, refresh } = useMessages(url);
+  const { pendingComments, addComment } = usePendingComments(url);
   const [tab, setTab] = useState(Tabs.CHAT);
   const [userAddress, setUserAddress] = useState("0x0" as `0x${string}`);
 
   const mockContext: HeadlessClientCtx = {
+    pendingComments: {
+      comments: pendingComments,
+      addComment: () => {},
+      removeComment: () => {},
+    },
     options: {
       allowUrlEdit: true,
     },
@@ -117,7 +110,10 @@ export function HeadlessMock(props: { url?: string }) {
       setTab: setTab,
     },
     handleSubmit: async (input: string) => {
-      await sendMessage(url, input);
+      addComment({
+        url: url,
+        comment: input,
+      });
     },
     userAddress: userAddress,
     account: {
@@ -127,6 +123,8 @@ export function HeadlessMock(props: { url?: string }) {
           //@ts-ignore
           transport: custom(window?.ethereum!),
         });
+
+        await walletClient.switchChain(sepolia);
 
         const [address] = await walletClient.requestAddresses();
         connectToWallet((x) => !x);

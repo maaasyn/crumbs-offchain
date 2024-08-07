@@ -9,6 +9,7 @@ import {
   HeadlessClientAccount,
   HeadlessClientMessages,
   HeadlessClientSendMessage,
+  HeadlessClientPendingComments,
 } from "./types/common";
 
 import { ReactNode } from "react";
@@ -37,7 +38,8 @@ const usePendingComments = (input: unknown) => {
 type ChatProps = HeadlessClientUrl &
   HeadlessClientAccount &
   HeadlessClientMessages &
-  HeadlessClientSendMessage;
+  HeadlessClientSendMessage &
+  HeadlessClientPendingComments;
 
 export const Chat = ({
   url,
@@ -45,13 +47,10 @@ export const Chat = ({
   account,
   messages,
   handleSubmit,
+  pendingComments,
 }: ChatProps) => {
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  // const { messages, isLoading } = useGetMessages();
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
   const [inputValue, setInputValue] = useState("");
-  const { pendingComments } = usePendingComments(url.getCurrentUrl());
 
   useEffect(() => {
     // Scroll to the bottom of the chat container
@@ -81,7 +80,7 @@ export const Chat = ({
             userAddress={userAddress}
           />
         ))}
-        {pendingComments.map((comment) => (
+        {pendingComments.comments.map((comment) => (
           <SinglePendingComment
             currentUrl={url.getCurrentUrl()}
             key={comment.internalId}
@@ -160,6 +159,11 @@ export const SettingsHeader: FC<{ setTab: (tab: Tabs) => void }> = ({
 };
 
 export const crumbsHeadlessContext: HeadlessClientCtx = {
+  pendingComments: {
+    comments: [],
+    addComment: () => {},
+    removeComment: () => {},
+  },
   options: {
     allowUrlEdit: true,
   },
@@ -221,6 +225,7 @@ export const HeadlessClient = ({ ctx }: { ctx: HeadlessClientCtx }) => {
               tab={ctx.tab}
             />
             <Chat
+              pendingComments={ctx.pendingComments}
               handleSubmit={ctx.handleSubmit}
               messages={ctx.messages}
               account={ctx.account}

@@ -36,6 +36,14 @@ export type HeadlessClientTab = {
   };
 };
 
+export type HeadlessClientPendingComments = {
+  pendingComments: {
+    comments: PendingComment[];
+    addComment: (comment: PendingComment) => void;
+    removeComment: (comment: PendingComment) => void;
+  };
+};
+
 export type HeadlessClientUrlAccountMap = {
   urlAccountMap: Record<string, string | null>;
 };
@@ -67,7 +75,8 @@ export type HeadlessClientCtx = Prettify<
     HeadlessClientMessages &
     HeadlessClientSendMessage &
     HeadlessClientUrlAccountMap &
-    HeadlessClientFeedback
+    HeadlessClientFeedback &
+    HeadlessClientPendingComments
 >;
 
 export type Message = {

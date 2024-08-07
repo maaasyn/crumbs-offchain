@@ -27,6 +27,14 @@ const Navbar = () => {
           <li className="cursor-pointer">
             <Link href={"https://github.com/maaasyn"}>Contact</Link>
           </li>
+          <li className="cursor-pointer">
+            <Link
+              href={
+                "https://crumbs.eurekonomicon.com/app?url=https://example.com/"
+              }>
+              App
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -77,7 +85,7 @@ const Hero = () => {
 
 const colorBeige = "FEF9E8";
 
-const YellowPaperOffchain = () => {
+const YellowOffchain = () => {
   return (
     <div className="flex justify-center items-center w-full px-4 lg:px-8">
       <div className="bg-[#FEF9E8] lg:py-20 py-10 px-4 rounded-2xl flex justify-center items-center max-w-screen-lg w-full">
@@ -133,7 +141,7 @@ const YellowPaperOffchain = () => {
   );
 };
 
-const YellowPaperOnChain = () => {
+const YellowOnChain = () => {
   return (
     <div className="flex justify-center items-center w-full px-4 lg:px-8">
       <div className="bg-[#FEF9E8] lg:py-20 py-10 px-4 rounded-2xl flex justify-center items-center max-w-screen-lg w-full">
@@ -433,9 +441,9 @@ export default function Page() {
         <SectionWhatAreCrumbs />
         <SectionGettingStarted />
         <SectionHowDoesItWork />
-        <YellowPaperOnChain />
+        <YellowOnChain />
         <SectionBigPlus />
-        <YellowPaperOffchain />
+        <YellowOffchain />
         <SectionSupportedNetworks />
         <SectionFaq faqs={faqs} />
       </div>
